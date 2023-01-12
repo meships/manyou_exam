@@ -258,13 +258,15 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   launchy
   listen (~> 3.2)
+  net-imap
+  net-pop
+  net-smtp
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3)
   rexml
   rspec-rails
   sass-rails (>= 6)
-  selenium-webdriver
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
