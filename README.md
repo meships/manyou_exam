@@ -49,3 +49,45 @@
 </table>
 <br>
 </table>
+<br>
+<br>
+<br>
+<h1>Herokuデプロイ手順</h1>
+作成しているアプリのディレクトリに行き
+- heroku create
+
+GemfileにGemを追加する（Ruby３系を使用している場合）
+- gem 'net-smtp'
+- gem 'net-imap'
+- gem 'net-pop'
+- bundle install
+
+git commitコマンドを使用して、コミット
+- git add .
+- git commit -m "保存した行動"
+
+Heroku buildpackを追加する
+- heroku buildpacks:set heroku/ruby
+- heroku buildpacks:add --index 1 heroku/nodejs
+
+heroku stack:set heroku- を行いバージョンを変更する
+- heroku stack:set heroku-20
+
+heroku stack で現在使われているstackを確認
+- heroku stack
+=== ⬢ nameless-crag-77838 Available Stacks
+  container
+  heroku-18
+* heroku-20
+  heroku-22
+
+package.json に追加記述
+- "engines": {
+  "node": "16.x"
+  }
+
+Herokuにデプロイ
+- git push heroku step2:master
+
+データベースの移行
+- heroku run rails db:migrate
