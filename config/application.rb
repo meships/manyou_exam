@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module ManyouExam
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.time_zone = 'Tokyo'
     config.load_defaults 6.0
 
     config.generators do |g|
