@@ -18,6 +18,14 @@
   <%= form.label :content,"内容" %>
   <%= form.text_field :content %>
 
+  <%= form.label :limit,"期日" %>
+  <%= form.date_field :limit %>
+  
+  <%= form.label :status,"ステータス" %>
+  <%= form.select :status,["未着手","着手中","完了"] %>
+
+
+
   <%= form.submit "タスク作成" %>
   
 <% end %>

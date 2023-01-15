@@ -10,11 +10,17 @@
   <tr>
     <th>タスク名</th>
     <th>内容</th>
+    <th>終了期限</th>
+    <th>ステータス</th>
+    <th>優先度</th>
   <tr>
   <% @tasks.each do |task| %>
     <tr class = "task_row">
       <td><%= task.title %></td>
       <td><%= task.content %></td>
+      <td><%= task.limit %></td>
+      <td><%= task.status %></td>
+      <td><%= task.priority %></td>
 
       <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
       <td><%= link_to 'タスクを編集する', edit_task_path(task.id) %></td>
