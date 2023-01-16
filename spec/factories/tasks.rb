@@ -1,10 +1,17 @@
 FactoryBot.define do
   factory :task do
-    title { 'Factoryで作ったデフォルトのタイトル１' }
-    content { 'Factoryで作ったデフォルトのコンテント１' }
+    title {'うんち'}
+    content {'うんちの中身'}
+    limit {'2022/12/14'}
+    status {3}
+    priority {1}
   end
   factory :second_task, class: Task do
-    title { 'Factoryで作ったデフォルトのタイトル２' }
-    content { 'Factoryで作ったデフォルトのコンテント２' }
+    title {'タイトル2'}
+    content {'タイトル2'}
+    limit {'2022/12/14'}
+    status {'未着手'}
+    priority {'中'}
   end
+
 end

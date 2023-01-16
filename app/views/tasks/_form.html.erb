@@ -22,9 +22,9 @@
   <%= form.date_field :limit %>
   
   <%= form.label :status,"ステータス" %>
-  <%= form.select :status,["未着手","着手中","完了"] %>
+  <%= form.select :status,Task.statuses.keys, { include_blank: "選択してください"} %>
 
-
+  <%= form.label :priority,"優先度" %>
 
   <%= form.submit "タスク作成" %>
   
