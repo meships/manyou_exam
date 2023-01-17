@@ -2,9 +2,26 @@
 
 <p><%= notice %></p>
 
+
+<%= form_tag(tasks_path, method: "get") do %>
+  <%= label_tag :title, "タイトル" %>
+  <%= text_field_tag :title, params[:title] %>
+  <%= label_tag :status, "ステータス" %>
+  <%= select_tag :status, options_for_select(Task.statuses), include_blank: true %>
+  <%= submit_tag "検索" %>
+<% end %>
+
+<!--
+<%= form_with(scope: :search, method: :get, local: true) do |form| %>
+  <%= form.label:title, "タイトル" %>
+  <%= form.text_field :title %>
+  <%= form.label:status, "ステータス" %>
+  <%= form.select :status, options_for_select(Task.statuses), include_blank: true %>
+  <%= form.submit"検索" %>
+<% end %> 
+-->
+
 <%= link_to "終了期限順", tasks_path(sort_expired: "true") %>
-
-
 
 <table>
   <tr>
