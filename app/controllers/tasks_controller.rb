@@ -9,7 +9,17 @@ class TasksController < ApplicationController
          if params[:status].present?
            @tasks = @tasks.search_status params[:status]
         end
-    end
+
+        if params[:sort_expired]
+          @tasks = Task.all.order(limit: :desc)
+        elsif params[:priority]
+          @tasks = Task.all.order(priority: :asc)
+        else
+          @tasks = Task.all.order(created_at: :desc)
+        end
+      end
+
+     
 
    #def index
      #@tasks = Task.all.order(created_at: :desc)
