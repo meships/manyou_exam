@@ -3,34 +3,31 @@
 <p><%= notice %></p>
 
 
-<%= form_tag(tasks_path, method: "get") do %>
-  <%= label_tag :title, "タイトル" %>
-  <%= text_field_tag :title, params[:title] %>
-  <%= label_tag :status, "ステータス" %>
-  <%= select_tag :status, options_for_select(Task.statuses), include_blank: true %>
-  <%= submit_tag "検索" %>
-<% end %>
-
-<!--
 <%= form_with(scope: :search, method: :get, local: true) do |form| %>
-  <%= form.label:title, "タイトル" %>
-  <%= form.text_field :title %>
-  <%= form.label:status, "ステータス" %>
-  <%= form.select :status, options_for_select(Task.statuses), include_blank: true %>
-  <%= form.submit"検索" %>
-<% end %> 
--->
 
-<%= link_to "終了期限順", tasks_path(sort_expired: "true") %>
-<%= link_to "優先順位順", tasks_path(sort_priority: "true") %>
+ <div class="form-group">
+   <%=form.label :stetus, "ステータス" %>
+   <%= form.select :status, options_for_select(Task.statuses), include_blank: true %>
+   <%= form.label :title, "タイトル" %>
+   <%= form.text_field :title %>
+ </div>
+ <div>
+   <%= form.submit '検索', class: "search-btn" %>
+ </div>
+
+<% end %>
 
 <table>
   <tr>
     <th>タスク名</th>
     <th>内容</th>
-    <th>終了期限</th>
+    <th><%= link_to "終了期限", sort_limit: true, class: "search-btn"%></th>
     <th>ステータス</th>
-    <th>優先度</th>
+    <th><%= link_to "優先度", sort_priority: true, class: "search-btn"%></th>
+
+    <%#<th><%= sort_order "limit", "終了期限"%></th>
+    <%#<th><%= sort_order "priority", "優先度"%></th>
+
   <tr>
   <% @tasks.each do |task| %>
     <tr class = "task_row">
