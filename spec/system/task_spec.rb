@@ -85,6 +85,7 @@ describe '検索機能' do
       expect(page).not_to have_content task2.title
     end
   end
+  
   context 'ステータス検索をした場合' do
     it "ステータスに完全一致するタスクが絞り込まれる" do
       task1 = FactoryBot.create(:task, status: 1 )
