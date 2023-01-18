@@ -53,3 +53,6 @@ gem 'net-pop'
 gem 'enum_help'
 
 gem 'kaminari'
+
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
