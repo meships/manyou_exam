@@ -97,7 +97,7 @@ describe '検索機能' do
       expect(page).to have_content task3.status
     end
   end
-  
+
   context 'タイトルのあいまい検索とステータス検索をした場合' do
     it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
       task1 = FactoryBot.create(:task, title: 'task')
@@ -115,4 +115,5 @@ describe '検索機能' do
       expect(page).not_to have_content task2.title
     end
   end
+  
 end
