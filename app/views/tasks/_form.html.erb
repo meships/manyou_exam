@@ -18,6 +18,15 @@
   <%= form.label :content,"内容" %>
   <%= form.text_field :content %>
 
+  <%= form.label :limit,"期日" %>
+  <%= form.date_field :limit %>
+  
+  <%= form.label :status,"ステータス" %>
+  <%= form.select :status,Task.statuses.keys, { include_blank: "選択してください"} %>
+
+  <%= form.label :priority,"優先度" %>
+  <%= form.select :priority,Task.priorities.keys, { include_blank: "選択してください"} %>
+
   <%= form.submit "タスク作成" %>
   
 <% end %>
