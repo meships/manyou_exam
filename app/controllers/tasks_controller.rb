@@ -20,7 +20,7 @@ class TasksController < ApplicationController
         elsif @search[:status].present?
           @tasks = @tasks.search_status(params[:search][:status])
         end
-     end    
+     end
   end
 
   #  helper_method :sort_column, :sort_direction
