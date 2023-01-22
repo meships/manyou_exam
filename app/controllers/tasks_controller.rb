@@ -1,13 +1,13 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks =Task.all.page(params[:page]).per(3)
+    @tasks =current_user.tasks.page(params[:page]).per(3)
       if params[:sort_limit]
         @tasks = @tasks.sort_limit.page(params[:page]).per(3)
       elsif params[:sort_priority]
         @tasks = @tasks.sort_priority.page(params[:page]).per(3)
       else
-        @tasks =Task.all.order(created_at: :desc).page(params[:page]).per(3)
+        @tasks =current_user.tasks.order(created_at: :desc).page(params[:page]).per(3)
       end
 
       @search = params[:search]
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:notice] = "タスクを作成しました"
       redirect_to tasks_path
