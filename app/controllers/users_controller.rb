@@ -7,12 +7,13 @@ class UsersController < ApplicationController
   end
 
   def create
-      @user = User.new(user_params)
-      if @user.save
-        redirect_to user_path(@user.id)
-      else
-        render :new
-      end
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to user_path(@user.id)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -34,7 +35,11 @@ class UsersController < ApplicationController
   end
 
   def show
-      @user = User.find(params[:id])
+    @user = User.find(params[:id])
+    unless @user == current_user
+      flash[:notice] = "権限がありません"
+      redirect_to  tasks_path
+    end
   end
 
   private
