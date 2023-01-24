@@ -1,8 +1,16 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:task) { FactoryBot.create(:task, user: user) }
-  
+
+  before do
+    visit new_user_path
+    fill_in 'name', with: 'user1@gmail.com'    
+    fill_in 'email', with: 'user1@gmail.com'
+    fill_in 'password', with: 'user1@gmail.com'
+    fill_in 'password_confirmation', with: 'user1@gmail.com'
+    click_on 'Log in'
+    @current_user = User.find_by(email: "user1@gmail.com")
+  end
+
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do

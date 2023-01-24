@@ -15,6 +15,10 @@
 
   <%= f.label :メールアドレス %>
   <%= f.email_field :email %>
+  
+  <%= f.label :admin, "管理者権限"%>
+  <%= f.select :admin, ["true","false"], {}%> true:付与、false:付与しない
+
 
   <%= f.label :パスワード %>
   <%= f.password_field :password %>
