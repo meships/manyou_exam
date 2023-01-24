@@ -1,17 +1,20 @@
 <h2><%= @user.name %>さんのタスク一覧</h2>
-  <table>
-    <tr>
 
-      <th>タスク名</th>
-      <th>内容</th>
-      <th>終了期限</th>
-      <th>登録日時</th>
-      <th>ステータス</th>
-      <th>優先順位</th>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">タスク名</th>
+      <th scope="col">内容</th>
+      <th scope="col">終了期限</th>
+      <th scope="col">登録日時</th>
+      <th scope="col">ステータス</th>
+      <th scope="col">優先順位</th>
     </tr>
+  </thead>
     <% @user.tasks.each do |task| %>
       <tr>
-
+        <th></th>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.limit %></td>
