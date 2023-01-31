@@ -1,4 +1,10 @@
 <h1>タスク詳細画面</h1>
 <p>タスク名: <%= @task.title %></p>
 <p>内容: <%= @task.content %></p>
+<% @task.labels.each do |label| %>
+    <p>ラベル: <%= label.label_name %></p>
+<% end %>
+<p>終了期日: <%= @task.limit %></p>
+<p>ステータス: <%= @task.status %></p>
+<p>優先度: <%= @task.priority %></p>
 <%= link_to "タスク一覧に戻る",tasks_path %>

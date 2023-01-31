@@ -2,7 +2,7 @@ class Task < ApplicationRecord
     belongs_to :user
 
     has_many :labellings, dependent: :destroy
-    has_many :labels, throgh: :labellings
+    has_many :labels, through: :labellings
     
     validates :title,presence: true
     validates :content,presence: true
@@ -12,6 +12,7 @@ class Task < ApplicationRecord
 
     scope :search_title, -> (title) {where('title LIKE ?',"%#{title}%")}
     scope :search_status, -> (status) {where(status: status)}
+    scope :search_label, -> (label_id) {where(id: Labelling.where(label_id: label_id).pluck(:task_id))}
  
     scope :default_order, -> { order(created_at: :DESC) }
     scope :sort_limit, -> {order(limit: :asc)}

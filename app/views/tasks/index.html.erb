@@ -9,8 +9,10 @@
  <div class="form-group">
    <%= form.label :title, "タスク名" %>
    <%= form.text_field :title %>
-   <%=form.label :stetus, "ステータス" %>
+   <%= form.label :stetus, "ステータス" %>
    <%= form.select :status, options_for_select(Task.statuses), include_blank: true %>
+   <%= form.label :label_name, "ラベル" %>
+   <%= form.select( :label_id, Label.pluck(:label_name, :id), { include_blank: true  }) %>
    <%= form.submit '検索', class: "search-btn" %>
  </div>
 
@@ -28,6 +30,7 @@
         <th scope="col"><%= link_to "終了期限", sort_limit: true, class: "search-btn"%></th>
         <th scope="col">ステータス</th>
         <th scope="col"><%= link_to "優先度", sort_priority: true, class: "search-btn"%></th>
+        <th scope="col">ラベル</th>
         <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -43,6 +46,11 @@
         <td><%= task.limit %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
+        <td>
+          <% task.labels.each do |label| %>
+            <%= label.label_name %>
+          <% end %>
+        </td>
 
         <td><%= link_to '詳細', task_path(task.id) %></td>
         <td><%= link_to '編集', edit_task_path(task.id) %></td>

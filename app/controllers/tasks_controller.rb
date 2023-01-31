@@ -1,26 +1,32 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks =current_user.tasks.page(params[:page]).per(3)
+    @tasks =current_user.tasks
       if params[:sort_limit]
-        @tasks = @tasks.sort_limit.page(params[:page]).per(3)
+        @tasks = @tasks.sort_limit
       elsif params[:sort_priority]
-        @tasks = @tasks.sort_priority.page(params[:page]).per(3)
+        @tasks = @tasks.sort_priority
       else
-        @tasks =current_user.tasks.order(created_at: :desc).page(params[:page]).per(3)
+        @tasks =current_user.tasks.order(created_at: :desc)
       end
 
       @search = params[:search]
+      #binding.pry
       if @search.present?
-        if @search[:title].present? && @search[:status].present?
+        if @search[:title].present? && @search[:status].present? && @search[:label_id].present?
           @tasks = @tasks.search_status(params[:search][:status])
           @tasks = @tasks.search_title(params[:search][:title])
+          @tasks = @tasks.search_label(params[:search][:label_id])
         elsif @search[:title].present?
           @tasks = @tasks.search_title(params[:search][:title])
         elsif @search[:status].present?
           @tasks = @tasks.search_status(params[:search][:status])
+        elsif @search[:label_id].present?
+          #binding.pry
+          @tasks = @tasks.search_label(params[:search][:label_id])
         end
      end
+     @tasks = @tasks.page(params[:page]).per(3)
   end
 
   #  helper_method :sort_column, :sort_direction
@@ -77,7 +83,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:content, :title, :limit, :status, :priority, :user_id)
+    params.require(:task).permit(:content, :title, :limit, :status, :priority, :user_id, { label_ids: [] } )
   end
 
   # def sort_direction
