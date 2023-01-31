@@ -15,15 +15,23 @@
   <%= form.label :title,"タスク名" %>
   <%= form.text_field :title %>
 
+  <br>
   <%= form.label :content,"内容" %>
   <%= form.text_field :content %>
 
+  <br>
+  <%= form.label :label_name,"ラベル名" %>
+  <%= form.collection_check_boxes(:label_ids, Label.all, :id, :label_name) %>
+
+  <br>
   <%= form.label :limit,"期日" %>
   <%= form.date_field :limit %>
   
+  <br>
   <%= form.label :status,"ステータス" %>
   <%= form.select :status,Task.statuses.keys, { include_blank: "選択してください"} %>
 
+  <br>
   <%= form.label :priority,"優先度" %>
   <%= form.select :priority,Task.priorities.keys, { include_blank: "選択してください"} %>
 
